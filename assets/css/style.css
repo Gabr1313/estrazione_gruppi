@@ -46,6 +46,10 @@ form input:focus,form input:hover,button:hover{
     padding: 9px 10px;
 }
 
+button:hover{
+    background-color:  #aad187;
+}
+
 ol{
     list-style-type: none;
 }
@@ -78,4 +82,7 @@ li p:last-of-type{
 
 footer {
     margin: 20px 0 0 0;
+}
+ol li p:hover{
+    background-color:  #ffff73;
 }

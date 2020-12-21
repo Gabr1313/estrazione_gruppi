@@ -30,7 +30,7 @@ CambiaPosizione= function(studente){
         gruppo.sort(ordineAlfabeticoCognome);
         setTimeout(function(){stampaGruppi(gruppi,"out")}, 150);
     }
-    
+
     else{
         click1=true;
         for (i=0;i<gruppi.length;i++){
