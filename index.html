@@ -13,11 +13,14 @@
         </header>
         <main>
             <form>
-                <h2>Inserisci il numero delle interrogazioni:</h2>
+                <h2>Inserisci il numero dei gruppi:</h2>
                 <input type="number">
-                <button onclick ="generaStudente()">Crea gruppi</button>
+                <h3>Ci sono studenti in gruppi predefiniti?</h3>
+                <p>(inserisci "-1" se non vuoi che lo studente venga estratto)</p>
+                <section id="inizio"></section>
+                <button onclick ="generaGruppi()">Crea gruppi</button>
             </form>
-            <section> 
+            <section id="out"> 
             </section>
         </main>
         <footer>

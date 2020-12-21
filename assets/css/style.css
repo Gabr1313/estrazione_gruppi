@@ -25,7 +25,11 @@ form h2{
 
 form h3{
     font-weight: 400;
-    margin: 10px 0 3px 0;
+    margin: 15px 0 4px 0;
+}
+
+form p{
+    margin: 0 0 15px 0;
 }
 
 form input, button{
@@ -43,12 +47,43 @@ button:active{
 
 form input:focus,form input:hover,button:hover{
     border: 2px solid black;
-    padding: 9px 10px;
+    padding: 9px;
 }
 
 button:hover{
     background-color:  #aad187;
 }
+
+#inizio{
+    overflow: hidden;
+}
+
+#inizio div{
+    float: left;
+    width: 33.33%;
+    margin: 5px 0;
+}
+
+#inizio div input{
+    float: left;
+    width: 30%;
+    margin: 0;
+    padding: 4px 7px;
+}
+
+#inizio div p{
+    float: left;
+    width: 70%;
+    margin: 0;
+    padding: 4px 0;
+    font-size: 13px;
+}
+
+#inizio input:focus,#inizio input:hover{
+    border: 2px solid black;
+    padding: 3px 6px;
+}
+
 
 ol{
     list-style-type: none;
