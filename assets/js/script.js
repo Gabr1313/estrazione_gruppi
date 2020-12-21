@@ -235,7 +235,7 @@ var classe = [
     new studente('Francesca', 'Valsecchi'),
     new studente('Francesco', 'Vannucchi'),
     new studente('Alessandro', 'Ventura'),
-    new studente('Alice', 'Volonte')
+    new studente('Alice', 'Volonté')
 ]
 classe.sort(ordineAlfabeticoCognome);
 
