@@ -121,7 +121,7 @@ stampaGruppi= function(gruppi){
     //creo section
     section=document.getElementById("out");
     section.innerHTML=`
-    <h2>I gruppi sono:</h2>
+    <h2>I gruppi estratti sono:</h2>
     <ol id="outgruppo"></ol>
     `;
     out=document.getElementById("outgruppo");
