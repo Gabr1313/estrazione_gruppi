@@ -5,11 +5,11 @@ ordineAlfabeticoCognome= function (a,b){
     return 0;
 }
 
-numeroIntValido = function(num){
+numeroIntValido = function(num, Classe){
     //controllo che il numero sia valido, considerando pure gli studenti rimossi
     x=0;
-    for (e of classe) if (e.valorePredefinito()===-1) x++;
-    if (num>0&&num<=(classe.length-x)) return num;
+    for (e of Classe) if (e.valorePredefinito(Classe)===-1) x++;
+    if (num>0&&num<=(Classe.length-x)) return num;
     return 0;
 }
 
@@ -50,13 +50,13 @@ CambiaPosizione= function(studente){
     }
 }
 
-creaGruppi= function(elencoDinamico,numeroInt){
+creaGruppi= function(elencoDinamico,numeroInt,Classe){
     //controllo che non ci siano troppi studenti nella stessa classe pre-inseriti
     length=elencoDinamico.length;
 
     //rimuove gli studenti da ElencoDinamico
     for (i=0;i<elencoDinamico.length;i++){
-        g=elencoDinamico[i].valorePredefinito();
+        g=elencoDinamico[i].valorePredefinito(Classe);
         if (g<0) length--;
     }
 
@@ -75,7 +75,7 @@ creaGruppi= function(elencoDinamico,numeroInt){
     
     //aggiunge gli studenti ai determinati gruppi
     for (i=0;i<elencoDinamico.length;i++){
-        g=elencoDinamico[i].valorePredefinito();
+        g=elencoDinamico[i].valorePredefinito(Classe);
         if (g>0&&g-1<gruppi.length){
             for (j=0;j<gruppi[g-1].length;j++){
                 if (gruppi[g-1][j]===undefined) {
@@ -90,7 +90,7 @@ creaGruppi= function(elencoDinamico,numeroInt){
     t=0
     elencoSupporto=Object.assign([], elencoDinamico);
     for (x=0;x<elencoSupporto.length;x++){
-        g=elencoSupporto[x].valorePredefinito();
+        g=elencoSupporto[x].valorePredefinito(Classe);
         if (g!=0){
             elencoDinamico.splice(t,1);
             t--;
@@ -144,10 +144,10 @@ stampaGruppi= function(gruppi){
     
 }
 
-stampaInizio= function(){
+stampaInizio= function(Classe){
     //stampa l'elenco di studenti da cui selezionare i gruppi predefiniti
     out=document.getElementById("inizio");
-    for (e of classe) out.appendChild(e.toHTMLinizio());
+    for (e of Classe) out.appendChild(e.toHTMLinizio());
 }
 
 controllaGruppi = function (gruppi){
@@ -156,13 +156,13 @@ controllaGruppi = function (gruppi){
     return true;
 }
 
-generaGruppi = function(){
+generaGruppi = function(Classe){
     //quello che succede a cliccare il bottone
-    numeroInt= numeroIntValido(parseInt(document.getElementsByTagName("input")[0].value));
+    numeroInt= numeroIntValido(parseInt(document.getElementsByTagName("input")[0].value),Classe);
     if (!numeroInt) alert("Numero di gruppi non valido.");
     else{
-        elencoDinamico=Object.assign([], classe);
-        gruppi=creaGruppi(elencoDinamico,numeroInt);
+        elencoDinamico=Object.assign([], Classe);
+        gruppi=creaGruppi(elencoDinamico,numeroInt, Classe);
         if (controllaGruppi(gruppi)) stampaGruppi(gruppi);
         else alert("Troppe persone in un gruppo o gruppo non esistente");
     }
@@ -194,11 +194,11 @@ function studente (nome,cognome){
         div.appendChild(p);
         return div;
     }
-    this.valorePredefinito = function (){
-        //legge il valore che gli do nell'elenco iniziale
+    this.valorePredefinito = function (Classe){
+        //legge il valore che gli do nell'elenco iniziale 
         daRimuovere= document.getElementsByClassName("rimuovi");
-        for (i=0;i<classe.length;i++){
-            if (classe[i]==this) {
+        for (i=0;i<Classe.length;i++){
+            if (Classe[i]==this) {
                 valore=document.getElementsByClassName("rimuovi")[i].value;
                 if (valore=="") valore=0;
                 return parseInt(valore);
@@ -210,7 +210,7 @@ function studente (nome,cognome){
 
 
 //creo la classe classe
-var classe = [
+var quarta_asa = [
     new studente('Gabriele', 'Baietta'),
     new studente('Alessia', 'Bala'),
     new studente('Filippo', 'Beretta'),
@@ -236,17 +236,19 @@ var classe = [
     new studente('Francesco', 'Vannucchi'),
     new studente('Alessandro', 'Ventura'),
     new studente('Alice', 'Volonté')
-]
-classe.sort(ordineAlfabeticoCognome);
-
-//stampo l'elenco iniziale
-stampaInizio();
-
-//previene che premendo invio si ricarichi la pagina, ma anzi, fa come se si cliccasse sul bottone
-var form = document.getElementsByTagName("form")[0];
-form.onsubmit = (event) => { event.preventDefault() }
+].sort(ordineAlfabeticoCognome);
 
 //variabili globali che servono nella funzione CambiaPosizione()
 click1=false;
 IndiceStudente1=[];
 IndiceStudente2=[];
+
+//previene che premendo invio si ricarichi la pagina, ma anzi, fa come se si cliccasse sul bottone
+var form = document.getElementsByTagName("form")[0];
+form.onsubmit = (event) => { event.preventDefault() }
+
+//cosa succede quando clicco sul bottone nella pagina
+document.getElementsByTagName("button")[0].onclick = () => generaGruppi(quarta_asa);
+
+//stampo l'elenco iniziale
+stampaInizio(quarta_asa);
