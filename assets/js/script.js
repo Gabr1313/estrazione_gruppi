@@ -244,7 +244,6 @@ var quarta_asa = [
     new studente('Vittorio', 'Canestrari'),
     new studente('Emanuele', 'Cattaneo'),
     new studente('Luisa', 'Crecchi'),
-    new studente('Samira', 'El Ayyane'),
     new studente('Elia', 'Fumagalli'),
     new studente('Leonardo', 'Gementi'),
     new studente('Simon', 'Groet'),
